@@ -1,13 +1,13 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
-import { useState, useEffect } from "react";
 
 interface TimeSlotPickerProps {
   date: Date;
-  selectedTime: string | undefined;
+  selectedTime?: string;
   onTimeSelect: (time: string) => void;
 }
 

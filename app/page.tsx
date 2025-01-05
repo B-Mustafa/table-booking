@@ -7,12 +7,21 @@ import { RestaurantInfo } from "@/components/restaurant-info";
 import { BookingSummary } from "@/components/booking-summary";
 import { Utensils } from "lucide-react";
 
+interface BookingData {
+  date: string;
+  time: string;
+  guests: number;
+  name: string;
+  email: string;
+  phone: string;
+}
+
 export default function Home() {
   const [showSummary, setShowSummary] = useState(false);
-  const [bookingData, setBookingData] = useState(null);
+  const [bookingData, setBookingData] = useState<BookingData | null>(null);
   const { toast } = useToast();
 
-  const handleBookingSuccess = (data: any) => {
+  const handleBookingSuccess = (data: BookingData) => {
     setBookingData(data);
     setShowSummary(true);
     toast({
@@ -49,9 +58,7 @@ export default function Home() {
 
           <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
             <BookingForm onSuccess={handleBookingSuccess} onError={handleBookingError} />
-            <div className="space-y-6">
-              <RestaurantInfo />
-            </div>
+            <RestaurantInfo />
           </div>
         </div>
       </div>
